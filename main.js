@@ -1,16 +1,26 @@
 // Calculadora IMC 
 
 let seguirCalculando = true 
-
-while (seguirCalculando) {
+let imcArray = []
 
 function calcularIMC(peso, altura) {
     let indiceMasaCorporal = peso / (altura * altura) * 10000;
+    imcArray.push(indiceMasaCorporal)
     return indiceMasaCorporal
 }
 
-let peso = parseInt(prompt("Ingrese su peso en kilogramos: "))
-let altura = parseInt(prompt("Ingrese su altura en centimetros: "))
+class Persona {
+    constructor(peso, altura) {
+        this.peso = peso
+        this.altura = altura
+    }
+}
+
+while (seguirCalculando) {
+
+const peso = parseInt(prompt("Ingrese su peso en kilogramos: "))
+const altura = parseInt(prompt("Ingrese su altura en centimetros: "))
+const persona1 = new Persona(peso, altura)
 
 let indiceMasaCorporal = calcularIMC(peso, altura);
 let indiceMasaCorporal2cifras = indiceMasaCorporal.toFixed(2)
@@ -26,7 +36,15 @@ if (indiceMasaCorporal2cifras < 18) {
     console.log("Obesidad");
 }
 
+imcArray.forEach((imc, index) => {
+    console.log(`Persona ${index + 1}: Peso ${persona1.peso}kg, Altura ${persona1.altura}cm, IMC ${imc.toFixed(2)}`);
+    });
+
 seguirCalculando = confirm("Desea calcular otro IMC?")
 }
 
-console.log("Programa finalizado")
+if (!seguirCalculando) {
+    console.log("Programa finalizado");
+}
+
+
